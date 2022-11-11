@@ -1,12 +1,12 @@
 package lo
 
 import (
+	"github.com/losphantom/lambda-go/parallel"
 	"math/rand"
 	"strconv"
 	"testing"
 	"time"
 
-	lop "github.com/samber/lo/parallel"
 	"github.com/thoas/go-funk"
 )
 
@@ -35,7 +35,7 @@ func BenchmarkMap(b *testing.B) {
 
 	b.Run("lop.Map", func(b *testing.B) {
 		for n := 0; n < b.N; n++ {
-			_ = lop.Map(arr, func(x int64, i int) string {
+			_ = parallel.Map(arr, func(x int64, i int) string {
 				return strconv.FormatInt(x, 10)
 			})
 		}
